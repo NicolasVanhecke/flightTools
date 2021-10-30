@@ -2,7 +2,7 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <!-- {{ __('Flight') }} -->
-            Flight: {{ $flight->flightNumber }}
+            Flight: {{ $flight->flight_number }}
         </h2>
     </x-slot>
 
@@ -16,8 +16,8 @@
                     <p><a href="{{ url('/admin/flights/' ) }}">Back to list</a></p>
                     <br/>
 
-                    <p>FlightNr: {{ $flight->flightNumber }}</p>
-                    <p>CommercialNr: {{ $flight->commercialNumber }}</p>
+                    <p>FlightNr: {{ $flight->flight_number }}</p>
+                    <p>CommercialNr: {{ $flight->commercial_number }}</p>
                     <p>Departure: {{ $flight->departure }}</p>
                     <p>Arrival: {{ $flight->arrival }}</p>
                     <p>STD: {{ $flight->std }}</p>

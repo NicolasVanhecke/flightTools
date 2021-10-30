@@ -15,8 +15,8 @@ class CreateFlightsTable extends Migration
     {
         Schema::create('flights', function (Blueprint $table) {
             $table->id()->unique();
-            $table->integer('flightNumber')->max( 10 );
-            $table->string('commercialNumber')->max( 7 );
+            $table->integer('flight_number')->max( 10 );
+            $table->string('commercial_number')->max( 7 );
             $table->string('departure');
             $table->string('arrival');
             $table->timestamp('std');

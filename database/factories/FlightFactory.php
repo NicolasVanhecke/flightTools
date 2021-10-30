@@ -14,11 +14,11 @@ class FlightFactory extends Factory
     public function definition()
     {
         $airports = [ 'BRU', 'OST', 'ANR', 'BCN', 'LPA', 'TFS' ];
-        $commercialPrexis = [ 'JAF', 'TFL', 'TOM', 'BLX', 'TUI' ];
+        $commercialPrefix = [ 'JAF', 'TFL', 'TOM', 'BLX', 'TUI' ];
 
         return [
-            'flightNumber' => $this->faker->numberBetween( 10000000, 99999999 ),
-            'commercialNumber' => $this->faker->randomElement( $commercialPrexis ) . $this->faker->numberBetween( 1000, 9999 ),
+            'flight_number' => $this->faker->numberBetween( 10000000, 99999999 ),
+            'commercial_number' => $this->faker->randomElement( $commercialPrefix ) . $this->faker->numberBetween( 1000, 9999 ),
             'departure' => $this->faker->randomElement( $airports ),
             'arrival' => $this->faker->randomElement( $airports ),
             'std' => $this->faker->dateTimeThisMonth( $max = 'now' ),

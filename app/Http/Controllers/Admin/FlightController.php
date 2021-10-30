@@ -12,15 +12,16 @@ class FlightController extends Controller
     
     public function flights(){
         $flights = Flight::all();
+
         return view( 'admin.flights.index', [
             'flights' => $flights
         ] );
     }
 
-    public function flightId( $flightId ){
+    public function detail( $flightId ){
         $flight = Flight::find( $flightId );
 
-        return view( 'admin.flights.flightId', [
+        return view( 'admin.flights.detail', [
             'flight' => $flight
         ] );
     }

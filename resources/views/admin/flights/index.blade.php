@@ -26,8 +26,8 @@
                         <tbody>
                             @foreach( $flights as $flight )
                             <tr>
-                                <td><a href="{{ url('/admin/flights/' . $flight->id) }}">{{ $flight->flightNumber }}</a></td>
-                                <td>{{ $flight->commercialNumber }}</td>
+                                <td><a href="{{ url('/admin/flights/' . $flight->id) }}">{{ $flight->flight_number }}</a></td>
+                                <td>{{ $flight->commercial_number }}</td>
                                 <td>{{ $flight->departure }}</td>
                                 <td>{{ $flight->arrival }}</td>
                                 <td>{{ $flight->std }}</td>

@@ -18,13 +18,13 @@ use App\Http\Controllers\Admin\PilotController;
 
 Route::prefix( 'admin' )->middleware( 'isAdmin' )->group( function () {
     Route::get( '/flights', [ FlightController::class, 'flights' ] )->name( 'adminFlights' );
-    Route::get( '/flights/{flightId}', [ FlightController::class, 'flightId' ] );
+    Route::get( '/flights/{flightId}', [ FlightController::class, 'detail' ] );
 
     Route::get( '/messages', [ MessageController::class, 'messages' ] )->name( 'adminMessages' );
-    Route::get( '/messages/{messageId}', [ MessageController::class, 'messageId' ] );
+    Route::get( '/messages/{messageId}', [ MessageController::class, 'detail' ] );
 
     Route::get( '/pilots', [ PilotController::class, 'pilots' ] )->name( 'adminPilots' );
-    Route::get( '/pilots/{pilotId}', [ PilotController::class, 'pilotId' ] );
+    Route::get( '/pilots/{pilotId}', [ PilotController::class, 'detail' ] );
 });
 
 
