@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\FlightController;
+use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\PilotController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,12 +16,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix( 'admin' )->middleware( 'isAdmin' )->group( function () {
+    Route::get( '/flights', [ FlightController::class, 'flights' ] )->name( 'adminFlights' );
+    Route::get( '/flights/{flightId}', [ FlightController::class, 'flightId' ] );
+
+    Route::get( '/messages', [ MessageController::class, 'messages' ] )->name( 'adminMessages' );
+    Route::get( '/messages/{messageId}', [ MessageController::class, 'messageId' ] );
+
+    Route::get( '/pilots', [ PilotController::class, 'pilots' ] )->name( 'adminPilots' );
+    Route::get( '/pilots/{pilotId}', [ PilotController::class, 'pilotId' ] );
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
+Route::get( '/', function () {
+    return view( 'welcome' );
+});
+
+Route::get( '/dashboard', function () {
+    return view( 'dashboard' );
+})->middleware( [ 'auth' ] )->name( 'dashboard' );
 
 require __DIR__.'/auth.php';
