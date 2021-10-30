@@ -27,7 +27,7 @@
                         <tbody>
                             @foreach( $pilots as $pilot )
                             <tr>
-                                <td><a href="{{ url('/admin/pilots/' . $pilot->id) }}">{{ $pilot->code }}</a></td>
+                                <td><a href="{{ url('/admin/pilots/' . $pilot->id) }}"><b>{{ $pilot->code }}</b></a></td>
                                 <td>{{ $pilot->first_name }}</td>
                                 <td>{{ $pilot->last_name }}</td>
                                 <td>{{ $pilot->rank }}</td>

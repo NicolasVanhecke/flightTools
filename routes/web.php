@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FlightController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PilotController;
@@ -17,6 +18,8 @@ use App\Http\Controllers\Admin\PilotController;
 */
 
 Route::prefix( 'admin' )->middleware( 'isAdmin' )->group( function () {
+    Route::get( '/', [ DashboardController::class, 'index' ] )->name( 'adminDashboard' );
+
     Route::get( '/flights', [ FlightController::class, 'flights' ] )->name( 'adminFlights' );
     Route::get( '/flights/{flightId}', [ FlightController::class, 'detail' ] );
 
@@ -32,8 +35,9 @@ Route::get( '/', function () {
     return view( 'welcome' );
 });
 
-Route::get( '/dashboard', function () {
-    return view( 'dashboard' );
-})->middleware( [ 'auth' ] )->name( 'dashboard' );
+// Unused now, replaced by adminDashboard
+// Route::get( '/dashboard', function () {
+//     return view( 'dashboard' );
+// })->middleware( [ 'auth' ] )->name( 'dashboard' );
 
 require __DIR__.'/auth.php';

@@ -24,7 +24,7 @@
                         <tbody>
                             @foreach( $messages as $message )
                             <tr>
-                                <td><a href="{{ url('/admin/messages/' . $message->id) }}">{{ $message->short }}</a></td>
+                                <td><a href="{{ url('/admin/messages/' . $message->id) }}"><b>{{ $message->short }}</b></a></td>
                                 <td>{{ $message->start_date }}</td>
                                 <td>{{ $message->end_date }}</td>
                                 <td>{{ $message->airport }}</td>
