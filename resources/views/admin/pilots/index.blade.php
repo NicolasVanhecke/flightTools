@@ -22,12 +22,13 @@
                                 <th>Qualified aircrafts</th>
                                 <th>Email</th>
                                 <th>Created at</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach( $pilots as $pilot )
                             <tr>
-                                <td><a href="{{ url('/admin/pilots/' . $pilot->id) }}"><b>{{ $pilot->code }}</b></a></td>
+                                <td><a href="{{ route( 'admin.pilots.show', $pilot->id ) }}"><b>{{ $pilot->code }}</b></a></td>
                                 <td>{{ $pilot->first_name }}</td>
                                 <td>{{ $pilot->last_name }}</td>
                                 <td>{{ $pilot->rank }}</td>
@@ -35,6 +36,7 @@
                                 <td>{{ $pilot->qualified_aircrafts }}</td>
                                 <td>{{ $pilot->email }}</td>
                                 <td>{{ $pilot->created_at }}</td>
+                                <td><a href="{{ route( 'admin.pilots.edit', $pilot->id ) }}"><b>Edit</b></a></td>
                             </tr>
                             @endforeach
                         </tbody>

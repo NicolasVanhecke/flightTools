@@ -26,8 +26,19 @@ Route::prefix( 'admin' )->middleware( 'isAdmin' )->group( function () {
     Route::get( '/messages', [ MessageController::class, 'messages' ] )->name( 'adminMessages' );
     Route::get( '/messages/{messageId}', [ MessageController::class, 'detail' ] );
 
-    Route::get( '/pilots', [ PilotController::class, 'pilots' ] )->name( 'adminPilots' );
-    Route::get( '/pilots/{pilotId}', [ PilotController::class, 'detail' ] );
+    Route::resource( '/pilots', PilotController::class , [
+        'names' => [
+            'index'     => 'admin.pilots.index',
+            'create'    => 'admin.pilots.create',
+            'store'     => 'admin.pilots.store',
+            'show'      => 'admin.pilots.show',
+            'edit'      => 'admin.pilots.edit',
+            'update'    => 'admin.pilots.update',
+            'destroy'   => 'admin.pilots.destroy'
+        ]
+    ]);
+    // Route::get( '/pilots', [ PilotController::class, 'pilots' ] )->name( 'adminPilots' );
+    // Route::get( '/pilots/{pilotId}', [ PilotController::class, 'detail' ] );
 });
 
 
