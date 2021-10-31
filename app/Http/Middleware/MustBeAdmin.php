@@ -16,7 +16,11 @@ class MustBeAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if( ! auth()->user()->isAdmin ){
+        if( !auth()->user() ){
+            return redirect()->route( 'login' )->with( 'error', 'You need to login with admin permissions to access this page.' );
+        }
+
+        if( !auth()->user()->isAdmin ){
             abort( 403 );
         }
 
