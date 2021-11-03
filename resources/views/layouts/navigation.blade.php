@@ -15,10 +15,10 @@
                     <x-nav-link :href="route('adminDashboard')" :active="request()->routeIs('adminDashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('adminFlights')" :active="request()->routeIs('adminFlights')">
+                    <x-nav-link :href="route('admin.flights.index')" :active="request()->routeIs('admin.flights.index')">
                         {{ __('Flights') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('adminMessages')" :active="request()->routeIs('adminMessages')">
+                    <x-nav-link :href="route('admin.messages.index')" :active="request()->routeIs('admin.messages.index')">
                         {{ __('Messages') }}
                     </x-nav-link>
                     <x-nav-link :href="route('admin.pilots.index')" :active="request()->routeIs('admin.pilots.index')">

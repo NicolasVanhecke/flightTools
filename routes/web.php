@@ -20,11 +20,29 @@ use App\Http\Controllers\Admin\PilotController;
 Route::prefix( 'admin' )->middleware( 'isAdmin' )->group( function () {
     Route::get( '/', [ DashboardController::class, 'index' ] )->name( 'adminDashboard' );
 
-    Route::get( '/flights', [ FlightController::class, 'flights' ] )->name( 'adminFlights' );
-    Route::get( '/flights/{flightId}', [ FlightController::class, 'detail' ] );
+    Route::resource( '/flights', FlightController::class , [
+        'names' => [
+            'index'     => 'admin.flights.index',
+            'create'    => 'admin.flights.create',
+            'store'     => 'admin.flights.store',
+            'show'      => 'admin.flights.show',
+            'edit'      => 'admin.flights.edit',
+            'update'    => 'admin.flights.update',
+            'destroy'   => 'admin.flights.destroy'
+        ]
+    ]);
 
-    Route::get( '/messages', [ MessageController::class, 'messages' ] )->name( 'adminMessages' );
-    Route::get( '/messages/{messageId}', [ MessageController::class, 'detail' ] );
+    Route::resource( '/messages', MessageController::class , [
+        'names' => [
+            'index'     => 'admin.messages.index',
+            'create'    => 'admin.messages.create',
+            'store'     => 'admin.messages.store',
+            'show'      => 'admin.messages.show',
+            'edit'      => 'admin.messages.edit',
+            'update'    => 'admin.messages.update',
+            'destroy'   => 'admin.messages.destroy'
+        ]
+    ]);
 
     Route::resource( '/pilots', PilotController::class , [
         'names' => [
@@ -37,8 +55,6 @@ Route::prefix( 'admin' )->middleware( 'isAdmin' )->group( function () {
             'destroy'   => 'admin.pilots.destroy'
         ]
     ]);
-    // Route::get( '/pilots', [ PilotController::class, 'pilots' ] )->name( 'adminPilots' );
-    // Route::get( '/pilots/{pilotId}', [ PilotController::class, 'detail' ] );
 });
 
 

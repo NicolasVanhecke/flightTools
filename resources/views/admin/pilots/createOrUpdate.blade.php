@@ -57,7 +57,7 @@
 									<div class="relative">
 										<select class="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded" id="grid-state">
 											@foreach( $stations as $station )
-												<option value='{{ $station }}'>{{ $station }}</option>
+												<option value='{{ $station }}' {{ ( $pilot->station === $station ) ? 'selected' : '' }}>{{ $station }}</option>
 											@endforeach
 										</select>
 									</div>

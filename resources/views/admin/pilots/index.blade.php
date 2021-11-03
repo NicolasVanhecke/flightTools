@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
-                    <table class="table-auto">
+                    <table class="table-auto w-full">
                         <thead>
                             <tr>
                                 <th class="text-left border-b-4 px-4 py-2">Code</th>
@@ -27,7 +27,7 @@
                             @foreach( $pilots as $pilot )
                             <tr>
                                 <td class="border-b-2 px-4 py-2">
-                                    <a href="{{ route( 'admin.pilots.show', $pilot->id ) }}">{{ $pilot->code }}</a>
+                                    <a href="{{ route( 'admin.pilots.show', $pilot->id ) }}" class="text-blue-500 hover:text-blue-700">{{ $pilot->code }}</a>
                                 </td>
                                 <td class="border-b-2 px-4 py-2">{{ $pilot->first_name }}</td>
                                 <td class="border-b-2 px-4 py-2">{{ $pilot->last_name }}</td>

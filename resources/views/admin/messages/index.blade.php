@@ -10,24 +10,33 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
 
-                    <table class="table-auto">
+                    <table class="table-auto w-full">
                         <thead>
                             <tr>
                                 <th class="text-left border-b-4 px-4 py-2">Short</th>
+                                <th class="text-left border-b-4 px-4 py-2">Airport</th>
                                 <th class="text-left border-b-4 px-4 py-2">Start date</th>
                                 <th class="text-left border-b-4 px-4 py-2">End date</th>
-                                <th class="text-left border-b-4 px-4 py-2">Airport</th>
-                                <th class="text-left border-b-4 px-4 py-2">Created at</th>
+                                <th class="text-left border-b-4 px-4 py-2">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach( $messages as $message )
                             <tr>
-                                <td class="border-b-2 px-4 py-2"><a href="{{ url('/admin/messages/' . $message->id) }}"><b>{{ $message->short }}</b></a></td>
+                                <td class="border-b-2 px-4 py-2">
+                                    <a href="{{ route( 'admin.messages.show', $message->id) }}" class="text-blue-500 hover:text-blue-700 mr-4">{{ $message->short }}</a>
+                                </td>
+                                <td class="border-b-2 px-4 py-2">{{ $message->airport }}</td>
                                 <td class="border-b-2 px-4 py-2">{{ $message->start_date }}</td>
                                 <td class="border-b-2 px-4 py-2">{{ $message->end_date }}</td>
-                                <td class="border-b-2 px-4 py-2">{{ $message->airport }}</td>
-                                <td class="border-b-2 px-4 py-2">{{ $message->created_at }}</td>
+                                <td class="border-b-2 px-4 py-2">
+                                    <a class="text-blue-500 hover:text-blue-700 mr-4" href="{{ route( 'admin.messages.edit', $message->id ) }}">Edit</a>
+                                    <form action="{{ route( 'admin.messages.destroy', $message->id ) }}" method="POST">
+                                        @csrf
+                                        @method( 'DELETE' )
+                                        <button class="text-gray-500 hover:text-gray-700">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
