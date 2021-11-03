@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            @if( !isset( $pilot ) )
+            @if( !$pilot->exists )
             	Pilot create
 		    @else
             	Pilot edit: {{ $pilot->first_name . ' ' . $pilot->last_name }}
@@ -13,66 +13,86 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <h1>Edit pilot details</h1>
-                    <br/>
 
-                    <p><a href="{{ route( 'admin.pilots.index' ) }}">Back to list</a></p>
-                    <br/>
-
-                    @if( !isset( $pilot ) )
-                    <form action="{{ route( 'admin.pilots.store' ) }}" method="POST">
-					    @method( 'POST' )
-				    @else
-                    <form action="{{ route( 'admin.pilots.update', $pilot->id ) }}" method="POST">
-					    @method( 'PUT' )
-				    @endif
-
-					    @csrf
-						<div class="form-group">
-							<input type="text" class="form-control" name="code" placeholder="Code"
-							value="{{ old( 'code' ) }}">
-						</div>
-						<div class="form-group">
-							<input type="text" class="form-control" name="first_name" placeholder="Firstname"
-							value="{{ old( 'first_name' ) }}">
-						</div>
-						<div class="form-group">
-							<input type="text" class="form-control" name="last_name" placeholder="Lastname"
-							value="{{ old( 'last_name' ) }}">
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="rank" id="radioRankCP" value="CP">
-							<label class="form-check-label" for="radioRankCP">
-								Captain
-							</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="radio" name="rank" id="radioRankFO" value="FO">
-							<label class="form-check-label" for="radioRankFO">
-								First Officer
-							</label>
-						</div>
-						<div class="form-group">
-							<select name="station" class="form-control">
-								@foreach( $stations as $station )
-									<option value='{{ $station }}'>{{ $station }}</option>
-								@endforeach
-							</select>
-						</div>
-						<div class="form-group">
-							<select name="qualified_aircrafts" class="form-control">
-								@foreach( $aircrafts as $aircraft )
-									<option value="{{ $aircraft }}">{{ $aircraft }}</option>
-								@endforeach
-							</select>
-						</div>
-						<div class="form-group">
-							<input type="email" class="form-control" name="email" placeholder="Email"
-							value="{{ old( 'email' ) }}">
+					<div class="flex">
+						<div class="w-1/4">
+		                    <h1>Todo: think about content for sidebar</h1> <br/>
+                    		<a href="{{ route( 'admin.pilots.index' ) }}" class="text-blue-500 hover:text-blue-700">Back to list</a>
 						</div>
 
-						<button type="submit" class="btn btn-primary">Submit</button>
-					</form>
+						<div class="w-3/4 border-l-2 pl-8">
+		                    @if( !$pilot->exists )
+		                    	<form action="{{ route( 'admin.pilots.store' ) }}" method="POST">
+							    @method( 'POST' )
+						    @else
+		                    	<form action="{{ route( 'admin.pilots.update', $pilot->id ) }}" method="POST">
+							    @method( 'PUT' )
+						    @endif
+
+							    @csrf
+							    <div class="mb-4">
+									<label class="block text-gray-700 text-sm font-bold mb-2" for="code">Code</label>
+									<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+									name="code" type="text" placeholder="Code" value="{{ $pilot->code ?? old( 'code' ) }}">
+							    </div>
+							    <div class="mb-4">
+									<label class="block text-gray-700 text-sm font-bold mb-2" for="first_name">Firstname</label>
+									<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+									name="first_name" type="text" placeholder="Firstname" value="{{ $pilot->first_name ?? old( 'first_name' ) }}">
+							    </div>
+							    <div class="mb-4">
+									<label class="block text-gray-700 text-sm font-bold mb-2" for="last_name">Lastname</label>
+									<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+									name="last_name" type="text" placeholder="Lastname" value="{{ $pilot->last_name ?? old( 'last_name' ) }}">
+							    </div>
+
+							    <div class="mb-4">
+									<label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+									<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
+									name="email" type="text" placeholder="Email" value="{{ $pilot->email ?? old( 'email' ) }}">
+							    </div>
+
+							    <div class="mb-4">
+									<label class="block text-gray-700 text-sm font-bold mb-2" for="station">Station</label>
+									<div class="relative">
+										<select class="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded" id="grid-state">
+											@foreach( $stations as $station )
+												<option value='{{ $station }}'>{{ $station }}</option>
+											@endforeach
+										</select>
+									</div>
+							    </div>
+
+							    <div class="mb-4">
+									<label class="block text-gray-700 text-sm font-bold mb-2" for="station">Aircraft</label>
+									<div class="relative">
+										<select class="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded" id="grid-state">
+											@foreach( $aircrafts as $aircraft )
+												<option value='{{ $aircraft }}'>{{ $aircraft }}</option>
+											@endforeach
+										</select>
+									</div>
+							    </div>
+
+							    <div class="mb-4">
+									<label class="block text-gray-700 text-sm font-bold mb-2">Rank</label>		
+									<label class="inline-flex items-center mr-4">
+										<input type="radio" class="form-radio" name="rank" value="CP" {{ ( $pilot->rank === 'CP' ) ? 'checked' : '' }} />
+										<span class="ml-2">Captain</span>
+									</label>
+									<label class="inline-flex items-center">
+										<input type="radio" class="form-radio" name="rank" value="FO" {{ ( $pilot->rank === 'FO' ) ? 'checked' : '' }} />
+										<span class="ml-2">First Officer</span>
+									</label>
+							    </div>
+
+								<button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+									Submit
+								</button>
+							</form>
+
+						</div>
+					</div>
                 </div>
             </div>
         </div>

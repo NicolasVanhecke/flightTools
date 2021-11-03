@@ -9,38 +9,45 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <h1>All pilots</h1>
 
-                    <table class="table">
+                    <table class="table-auto">
                         <thead>
                             <tr>
-                                <th>Code</th>
-                                <th>Firstname</th>
-                                <th>Lastname</th>
-                                <th>Rank</th>
-                                <th>Station</th>
-                                <th>Qualified aircrafts</th>
-                                <th>Email</th>
-                                <th>Created at</th>
-                                <th>Actions</th>
+                                <th class="text-left border-b-4 px-4 py-2">Code</th>
+                                <th class="text-left border-b-4 px-4 py-2">Firstname</th>
+                                <th class="text-left border-b-4 px-4 py-2">Lastname</th>
+                                <th class="text-left border-b-4 px-4 py-2">Rank</th>
+                                <th class="text-left border-b-4 px-4 py-2">Station</th>
+                                <th class="text-left border-b-4 px-4 py-2">Email</th>
+                                <th class="text-left border-b-4 px-4 py-2">Created at</th>
+                                <th class="text-left border-b-4 px-4 py-2">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach( $pilots as $pilot )
                             <tr>
-                                <td><a href="{{ route( 'admin.pilots.show', $pilot->id ) }}"><b>{{ $pilot->code }}</b></a></td>
-                                <td>{{ $pilot->first_name }}</td>
-                                <td>{{ $pilot->last_name }}</td>
-                                <td>{{ $pilot->rank }}</td>
-                                <td>{{ $pilot->station }}</td>
-                                <td>{{ $pilot->qualified_aircrafts }}</td>
-                                <td>{{ $pilot->email }}</td>
-                                <td>{{ $pilot->created_at }}</td>
-                                <td><a href="{{ route( 'admin.pilots.edit', $pilot->id ) }}"><b>Edit</b></a></td>
+                                <td class="border-b-2 px-4 py-2">
+                                    <a href="{{ route( 'admin.pilots.show', $pilot->id ) }}">{{ $pilot->code }}</a>
+                                </td>
+                                <td class="border-b-2 px-4 py-2">{{ $pilot->first_name }}</td>
+                                <td class="border-b-2 px-4 py-2">{{ $pilot->last_name }}</td>
+                                <td class="border-b-2 px-4 py-2">{{ ( $pilot->rank === 'CP' ) ? 'Captain' : 'First Officer' }}</td>
+                                <td class="border-b-2 px-4 py-2">{{ $pilot->station }}</td>
+                                <td class="border-b-2 px-4 py-2">{{ $pilot->email }}</td>
+                                <td class="border-b-2 px-4 py-2">{{ $pilot->created_at }}</td>
+                                <td class="border-b-2 px-4 py-2 flex">
+                                    <a class="text-blue-500 hover:text-blue-700 mr-4" href="{{ route( 'admin.pilots.edit', $pilot->id ) }}">Edit</a>
+                                    <form action="{{ route( 'admin.pilots.destroy', $pilot->id ) }}" method="POST">
+                                        @csrf
+                                        @method( 'DELETE' )
+                                        <button class="text-gray-500 hover:text-gray-700">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
+
                 </div>
             </div>
         </div>

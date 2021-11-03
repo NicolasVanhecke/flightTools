@@ -32,10 +32,12 @@ class PilotController extends Controller
      */
     public function create()
     {
+        $pilot = new Pilot;
         $stations = [ 'BRU', 'OST', 'ANR', 'BCN', 'LPA', 'TFS' ];
         $aircrafts = [ 'B737', 'B737-MAX', 'B737-800', 'B777' ];
 
         return view( 'admin.pilots.createOrUpdate', [
+            'pilot' => $pilot,
             'stations' => $stations,
             'aircrafts' => $aircrafts
         ]);
