@@ -35,11 +35,13 @@ class MessageController extends Controller
         $message = new Message;
         $airports = [ 'BRU', 'OST', 'ANR', 'BCN', 'LPA', 'TFS' ];
         $aircrafts = [ 'B737', 'B737-MAX', 'B737-800', 'B777' ];
+        $statuses = [ 'draft', 'published', 'expired' ];
 
         return view( 'admin.messages.createOrUpdate', [
             'message' => $message,
             'airports' => $airports,
-            'aircrafts' => $aircrafts
+            'aircrafts' => $aircrafts,
+            'statuses' => $statuses
         ]);
     }
 
@@ -91,11 +93,13 @@ class MessageController extends Controller
         $message = Message::findOrFail( $id );
         $airports = [ 'BRU', 'OST', 'ANR', 'BCN', 'LPA', 'TFS' ];
         $aircrafts = [ 'B737', 'B737-MAX', 'B737-800', 'B777' ];
+        $statuses = [ 'draft', 'published', 'expired' ];
 
         return view( 'admin.messages.createOrUpdate', [
             'message' => $message,
             'airports' => $airports,
-            'aircrafts' => $aircrafts
+            'aircrafts' => $aircrafts,
+            'statuses' => $statuses
         ]);
     }
 
@@ -149,6 +153,7 @@ class MessageController extends Controller
             'end_date' => 'required',
             'short' => 'required',
             'body' => 'required',
+            'status' => 'required',
         ]);
     }
 
@@ -163,7 +168,7 @@ class MessageController extends Controller
         $message->start_date = $request->input('start_date');
         $message->end_date = $request->input('end_date');
         $message->short = $request->input('short');
-        $message->body = $request->input('body');
+        $message->status = $request->input('status');
         $message->save();
     }
 

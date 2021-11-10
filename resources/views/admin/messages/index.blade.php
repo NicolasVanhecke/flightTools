@@ -24,6 +24,7 @@
                                 <th class="text-left border-b-4 px-4 py-2">Airport</th>
                                 <th class="text-left border-b-4 px-4 py-2">Start date</th>
                                 <th class="text-left border-b-4 px-4 py-2">End date</th>
+                                <th class="text-left border-b-4 px-4 py-2">Status</th>
                                 <th class="text-left border-b-4 px-4 py-2">Actions</th>
                             </tr>
                         </thead>
@@ -36,6 +37,15 @@
                                 <td class="border-b-2 px-4 py-2">{{ $message->airport }}</td>
                                 <td class="border-b-2 px-4 py-2">{{ $message->start_date }}</td>
                                 <td class="border-b-2 px-4 py-2">{{ $message->end_date }}</td>
+                                <td class="border-b-2 px-4 py-2">
+                                    @if( $message->status === 'draft' )
+                                        <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-yellow-100 bg-yellow-600 rounded-full">{{ $message->status }}</span>
+                                    @elseif( $message->status === 'published' )
+                                        <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-green-100 bg-green-600 rounded-full">{{ $message->status }}</span>
+                                    @elseif( $message->status === 'expired' )
+                                        <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">{{ $message->status }}</span>
+                                    @endif
+                                </td>
                                 <td class="border-b-2 px-4 py-2">
                                     <a class="text-blue-500 hover:text-blue-700 mr-4" href="{{ route( 'admin.messages.edit', $message->id ) }}">Edit</a>
                                     <form action="{{ route( 'admin.messages.destroy', $message->id ) }}" method="POST">

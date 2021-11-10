@@ -31,7 +31,7 @@
 
 							    @csrf
 							    <div class="mb-4">
-									<label class="block text-gray-700 text-sm font-bold mb-2" for="station">Airport</label>
+									<label class="block text-gray-700 text-sm font-bold mb-2" for="airport">Airport</label>
 									<div class="relative">
 										<select class="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded" name="airport">
 											@foreach( $airports as $airport )
@@ -50,6 +50,17 @@
 									<label class="block text-gray-700 text-sm font-bold mb-2" for="end_date">End date</label>
 									<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
 									name="end_date" type="text" placeholder="End date" value="{{ $message->end_date ?? old( 'end_date' ) }}">
+							    </div>
+
+							    <div class="mb-4">
+									<label class="block text-gray-700 text-sm font-bold mb-2" for="status">Status</label>
+									<div class="relative">
+										<select class="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded" name="status">
+											@foreach( $statuses as $status )
+												<option value='{{ $status }}' {{ ( $message->status === $status ) ? 'selected' : '' }} >{{ $status }}</option>
+											@endforeach
+										</select>
+									</div>
 							    </div>
 
 							    <div class="mb-4">
