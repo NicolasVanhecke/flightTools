@@ -170,5 +170,4 @@ class PilotController extends Controller
         $pilot->email = $request->input('email');
         $pilot->save();
     }
-
 }
