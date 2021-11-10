@@ -32,7 +32,7 @@
 							    @csrf
 
 							    <div class="mb-4">
-									<label class="block text-gray-700 text-sm font-bold mb-2" for="flight_number">End date</label>
+									<label class="block text-gray-700 text-sm font-bold mb-2" for="flight_number">Flight number</label>
 									<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
 									name="flight_number" type="text" placeholder="Flight number" value="{{ $flight->flight_number ?? old( 'flight_number' ) }}">
 							    </div>
@@ -68,13 +68,13 @@
 							    <div class="mb-4">
 									<label class="block text-gray-700 text-sm font-bold mb-2" for="std">STD</label>
 									<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
-									name="std" type="text" placeholder="std" value="{{ $flight->std ?? old( 'std' ) }}">
+									name="std" type="text" placeholder="Scheduled time of departure" value="{{ $flight->std ?? old( 'std' ) }}">
 							    </div>
 
 							    <div class="mb-4">
 									<label class="block text-gray-700 text-sm font-bold mb-2" for="std">STA</label>
 									<input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700"
-									name="sta" type="text" placeholder="sta" value="{{ $flight->sta ?? old( 'sta' ) }}">
+									name="sta" type="text" placeholder="Scheduled time of arrival" value="{{ $flight->sta ?? old( 'sta' ) }}">
 							    </div>
 
 								<button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
