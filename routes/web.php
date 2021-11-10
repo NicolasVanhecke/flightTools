@@ -18,7 +18,7 @@ use App\Http\Controllers\Admin\PilotController;
 */
 
 Route::prefix( 'admin' )->middleware( 'isAdmin' )->group( function () {
-    Route::get( '/', [ DashboardController::class, 'index' ] )->name( 'adminDashboard' );
+    Route::get( '/', DashboardController::class )->name( 'adminDashboard' );
 
     Route::resource( '/flights', FlightController::class , [
         'names' => [

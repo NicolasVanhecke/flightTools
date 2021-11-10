@@ -11,7 +11,7 @@ use App\Models\Pilot;
 
 class DashboardController extends Controller
 {
-    public function index(){
+    public function __invoke(){
         $flightCount = Flight::count();
         $messageCount = Message::count();
         $pilotCount = Pilot::count();
