@@ -86,6 +86,17 @@
 									</label>
 							    </div>
 
+							    <div class="mb-4">
+									<label class="block text-gray-700 text-sm font-bold mb-2" for="status">Status</label>
+									<div class="relative">
+										<select class="block w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded" name="status">
+											@foreach( $statuses as $status )
+												<option value='{{ $status }}' {{ ( $message->status === $status ) ? 'selected' : '' }} >{{ $status }}</option>
+											@endforeach
+										</select>
+									</div>
+							    </div>
+
 								<button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
 									Submit
 								</button>

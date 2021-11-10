@@ -24,6 +24,7 @@
                                 <th class="text-left border-b-4 px-4 py-2">Firstname</th>
                                 <th class="text-left border-b-4 px-4 py-2">Lastname</th>
                                 <th class="text-left border-b-4 px-4 py-2">Rank</th>
+                                <th class="text-left border-b-4 px-4 py-2">Status</th>
                                 <th class="text-left border-b-4 px-4 py-2">Station</th>
                                 <th class="text-left border-b-4 px-4 py-2">Email</th>
                                 <th class="text-left border-b-4 px-4 py-2">Created at</th>
@@ -39,10 +40,19 @@
                                 <td class="border-b-2 px-4 py-2">{{ $pilot->first_name }}</td>
                                 <td class="border-b-2 px-4 py-2">{{ $pilot->last_name }}</td>
                                 <td class="border-b-2 px-4 py-2">{{ ( $pilot->rank === 'CP' ) ? 'Captain' : 'First Officer' }}</td>
+                                <td class="border-b-2 px-4 py-2">
+                                    @if( $pilot->status === 'training' )
+                                        <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-yellow-100 bg-yellow-600 rounded-full">{{ $pilot->status }}</span>
+                                    @elseif( $pilot->status === 'active' )
+                                        <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-green-100 bg-green-600 rounded-full">{{ $pilot->status }}</span>
+                                    @elseif( $pilot->status === 'retired' )
+                                        <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">{{ $pilot->status }}</span>
+                                    @endif
+                                </td>
                                 <td class="border-b-2 px-4 py-2">{{ $pilot->station }}</td>
                                 <td class="border-b-2 px-4 py-2">{{ $pilot->email }}</td>
                                 <td class="border-b-2 px-4 py-2">{{ $pilot->created_at }}</td>
-                                <td class="border-b-2 px-4 py-2 flex">
+                                <td class="border-b-2 px-4 py-2">
                                     <a class="text-blue-500 hover:text-blue-700 mr-4" href="{{ route( 'admin.pilots.edit', $pilot->id ) }}">Edit</a>
                                     <form action="{{ route( 'admin.pilots.destroy', $pilot->id ) }}" method="POST">
                                         @csrf

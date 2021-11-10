@@ -35,11 +35,13 @@ class PilotController extends Controller
         $pilot = new Pilot;
         $stations = [ 'BRU', 'OST', 'ANR', 'BCN', 'LPA', 'TFS' ];
         $aircrafts = [ 'B737', 'B737-MAX', 'B737-800', 'B777' ];
+        $statuses = [ 'in training', 'active', 'retired' ];
 
         return view( 'admin.pilots.createOrUpdate', [
             'pilot' => $pilot,
             'stations' => $stations,
-            'aircrafts' => $aircrafts
+            'aircrafts' => $aircrafts,
+            'statuses' => $statuses
         ]);
     }
 
@@ -91,11 +93,13 @@ class PilotController extends Controller
         $pilot = Pilot::findOrFail( $id );
         $stations = [ 'BRU', 'OST', 'ANR', 'BCN', 'LPA', 'TFS' ];
         $aircrafts = [ 'B737', 'B737-MAX', 'B737-800', 'B777' ];
+        $statuses = [ 'in training', 'active', 'retired' ];
 
         return view( 'admin.pilots.createOrUpdate', [
             'pilot' => $pilot,
             'stations' => $stations,
-            'aircrafts' => $aircrafts
+            'aircrafts' => $aircrafts,
+            'statuses' => $statuses
         ]);
     }
 
@@ -150,7 +154,8 @@ class PilotController extends Controller
             'rank' => 'required',
             'station' => 'required',
             'qualified_aircrafts' => 'required',
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'status' => 'required'
         ]);
     }
 
@@ -168,6 +173,7 @@ class PilotController extends Controller
         $pilot->station = $request->input('station');
         $pilot->qualified_aircrafts = $request->input('qualified_aircrafts');
         $pilot->email = $request->input('email');
+        $pilot->status = $request->input('status');
         $pilot->save();
     }
 }
