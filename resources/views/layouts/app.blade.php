@@ -20,7 +20,12 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @include( 'layouts.navigation' )
+            @if( str_contains( Illuminate\Support\Facades\Route::currentRouteName(), 'admin' ) )
+                @include( 'components.admin-navigation' )
+            @else
+                @include( 'components.frontend-navigation' )
+            @endif
+
             @include( 'components.flash-message' )
             @include( 'components.form-errors' )
 
@@ -35,6 +40,8 @@
             <main>
                 {{ $slot }}
             </main>
+
+            @include( 'components.footer' )
         </div>
     </body>
 </html>

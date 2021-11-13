@@ -18,7 +18,7 @@ use App\Http\Controllers\Admin\PilotController;
 */
 
 Route::prefix( 'admin' )->middleware( 'isAdmin' )->group( function () {
-    Route::get( '/', DashboardController::class )->name( 'adminDashboard' );
+    Route::get( '/', DashboardController::class )->name( 'admin.dashboard' );
 
     Route::resource( '/flights', FlightController::class , [
         'names' => [
@@ -58,11 +58,13 @@ Route::prefix( 'admin' )->middleware( 'isAdmin' )->group( function () {
 });
 
 
-Route::get( '/', function () {
-    return view( 'welcome' );
-});
+Route::get( '/', HomeController::class )->name( 'home' );
 
-// Unused now, replaced by adminDashboard
+// Route::get( '/', function () {
+//     return view( 'welcome' );
+// });
+
+// Unused now, replaced by admin.dashboard
 // Route::get( '/dashboard', function () {
 //     return view( 'dashboard' );
 // })->middleware( [ 'auth' ] )->name( 'dashboard' );
