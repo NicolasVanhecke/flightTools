@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\FlightController;
-use App\Http\Controllers\Admin\MessageController;
-use App\Http\Controllers\Admin\PilotController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\FlightController as AdminFlightController;
+use App\Http\Controllers\Admin\MessageController as AdminMessageController;
+use App\Http\Controllers\Admin\PilotController as AdminPilotController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FlightController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +21,9 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::prefix( 'admin' )->middleware( 'isAdmin' )->group( function () {
-    Route::get( '/', DashboardController::class )->name( 'admin.dashboard' );
+    Route::get( '/', AdminDashboardController::class )->name( 'admin.dashboard' );
 
-    Route::resource( '/flights', FlightController::class , [
+    Route::resource( '/flights', AdminFlightController::class , [
         'names' => [
             'index'     => 'admin.flights.index',
             'create'    => 'admin.flights.create',
@@ -33,7 +35,7 @@ Route::prefix( 'admin' )->middleware( 'isAdmin' )->group( function () {
         ]
     ]);
 
-    Route::resource( '/messages', MessageController::class , [
+    Route::resource( '/messages', AdminMessageController::class , [
         'names' => [
             'index'     => 'admin.messages.index',
             'create'    => 'admin.messages.create',
@@ -45,7 +47,7 @@ Route::prefix( 'admin' )->middleware( 'isAdmin' )->group( function () {
         ]
     ]);
 
-    Route::resource( '/pilots', PilotController::class , [
+    Route::resource( '/pilots', AdminPilotController::class , [
         'names' => [
             'index'     => 'admin.pilots.index',
             'create'    => 'admin.pilots.create',
@@ -61,13 +63,10 @@ Route::prefix( 'admin' )->middleware( 'isAdmin' )->group( function () {
 
 Route::get( '/', HomeController::class )->name( 'home' );
 
-// Route::get( '/', function () {
-//     return view( 'welcome' );
-// });
+Route::get( '/messages', [ MessageController::class, 'index' ] )->name( 'messages.index' );
+Route::get( '/messages/{message}', [ MessageController::class, 'show' ] )->name( 'messages.show' );
 
-// Unused now, replaced by admin.dashboard
-// Route::get( '/dashboard', function () {
-//     return view( 'dashboard' );
-// })->middleware( [ 'auth' ] )->name( 'dashboard' );
+Route::get( '/flights', [ FlightController::class, 'index' ] )->name( 'flights.index' );
+Route::get( '/flights/{flight}', [ FlightController::class, 'show' ] )->name( 'flights.show' );
 
 require __DIR__.'/auth.php';

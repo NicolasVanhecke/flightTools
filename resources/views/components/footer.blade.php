@@ -1,4 +1,4 @@
-<footer class="block w-screen absolute bottom-0 left-0 bg-white px-4 py-2">
+<footer class="block w-screen fixed bottom-0 left-0 bg-white px-4 py-2">
     <div class="flex justify-between">
         <p>© Nicolas Vanhecke</p>
         @if( Auth::user()->isAdmin )

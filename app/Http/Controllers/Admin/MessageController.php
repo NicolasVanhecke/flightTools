@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Message;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Pagination\Paginator;
 
 class MessageController extends Controller
 {
@@ -18,7 +19,7 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::all();
+        $messages = Message::paginate( 20 );
 
         return view( 'admin.messages.index', [
             'messages' => $messages

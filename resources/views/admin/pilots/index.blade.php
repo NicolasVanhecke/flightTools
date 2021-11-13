@@ -64,6 +64,10 @@
                             @endforeach
                         </tbody>
                     </table>
+                    
+                    <div class="my-2">
+                        {!! $messages->links() !!}                        
+                    </div>
 
                 </div>
             </div>
