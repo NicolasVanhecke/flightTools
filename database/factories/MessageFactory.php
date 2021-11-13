@@ -14,16 +14,21 @@ class MessageFactory extends Factory
     public function definition()
     {
         $airports = [ 'BRU', 'OST', 'ANR', 'BCN', 'LPA', 'TFS' ];
-        $short = $this->faker->paragraph( 1 );
-        $slug = str_replace(' ', '-', $short);
+        
+        $short = $this->faker->sentence();
+        $shortWithoutSpace = str_replace(' ', '-', $short);
+        $shortWithoutSpaceAndDot = str_replace('.', '', $shortWithoutSpace);
+        
+        $statuses = [ 'published', 'draft', 'expired' ];
 
         return [
-            'slug' => $slug,
+            'slug' => strtolower( $shortWithoutSpaceAndDot ),
             'short' => $short,
             'body' => $this->faker->paragraph( 25 ),
             'start_date' => $this->faker->dateTimeThisMonth( $max = 'now' ),
             'end_date' => $this->faker->dateTimeThisMonth( $max = 'now' ),
             'airport' => $this->faker->randomElement( $airports ),
+            'status' => $this->faker->randomElement( $statuses ),
         ];
     }
 }

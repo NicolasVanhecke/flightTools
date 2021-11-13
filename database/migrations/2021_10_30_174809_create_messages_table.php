@@ -21,6 +21,7 @@ class CreateMessagesTable extends Migration
             $table->timestamp('start_date');
             $table->timestamp('end_date');
             $table->string('airport');
+            $table->string('status')->default('published');
             $table->timestamps();
         });
     }

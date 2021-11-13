@@ -64,9 +64,9 @@ Route::prefix( 'admin' )->middleware( 'isAdmin' )->group( function () {
 Route::get( '/', HomeController::class )->name( 'home' );
 
 Route::get( '/messages', [ MessageController::class, 'index' ] )->name( 'messages.index' );
-Route::get( '/messages/{message}', [ MessageController::class, 'show' ] )->name( 'messages.show' );
+Route::get( '/messages/{message:slug}', [ MessageController::class, 'show' ] )->name( 'messages.show' );
 
 Route::get( '/flights', [ FlightController::class, 'index' ] )->name( 'flights.index' );
-Route::get( '/flights/{flight}', [ FlightController::class, 'show' ] )->name( 'flights.show' );
+Route::get( '/flights/{flight:flight_number}', [ FlightController::class, 'show' ] )->name( 'flights.show' );
 
 require __DIR__.'/auth.php';

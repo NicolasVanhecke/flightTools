@@ -20,7 +20,8 @@ class Message extends Model
         'body',
         'start_date',
         'end_date',
-        'airport'
+        'airport',
+        'status'
     ];
 
 }

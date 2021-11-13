@@ -24,7 +24,7 @@
                             @foreach( $messages as $message )
                             <tr>
                                 <td class="border-b-2 px-4 py-2">
-                                    <a href="{{ route( 'messages.show', $message->id) }}" class="text-blue-500 hover:text-blue-700 mr-4">{{ $message->short }}</a>
+                                    <a href="{{ route( 'messages.show', $message->slug) }}" class="text-blue-500 hover:text-blue-700 mr-4">{{ $message->short }}</a>
                                 </td>
                                 <td class="border-b-2 px-4 py-2">{{ $message->airport }}</td>
                                 <td class="border-b-2 px-4 py-2">{{ $message->start_date }}</td>

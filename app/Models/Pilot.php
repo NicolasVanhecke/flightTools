@@ -22,6 +22,7 @@ class Pilot extends Model
         'rank',
         'station',
         'qualified_aircrafts',
-        'email'
+        'email',
+        'status'
     ];
 }

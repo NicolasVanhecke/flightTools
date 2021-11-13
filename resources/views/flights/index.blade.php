@@ -26,7 +26,7 @@
                             @foreach( $flights as $flight )
                             <tr>
                                 <td class="border-b-2 px-4 py-2">
-                                    <a href="{{ route( 'flights.show', $flight->id) }}" class="text-blue-500 hover:text-blue-700 mr-4">{{ $flight->flight_number }}</a>
+                                    <a href="{{ route( 'flights.show', $flight->flight_number) }}" class="text-blue-500 hover:text-blue-700 mr-4">{{ $flight->flight_number }}</a>
                                 </td>
                                 <td class="border-b-2 px-4 py-2">{{ $flight->commercial_number }}</td>
                                 <td class="border-b-2 px-4 py-2">{{ $flight->departure }}</td>

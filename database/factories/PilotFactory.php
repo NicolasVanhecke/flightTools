@@ -15,6 +15,7 @@ class PilotFactory extends Factory
     {
         $airports = [ 'BRU', 'OST', 'ANR', 'BCN', 'LPA', 'TFS' ];
         $aircrafts = [ 'B737', 'B737-MAX', 'B737-800', 'B777' ];
+        $statuses = [ 'published', 'draft', 'expired' ];
 
         return [
             'code' => $this->faker->regexify('[A-Z]{3}'),
@@ -24,6 +25,7 @@ class PilotFactory extends Factory
             'station' => $this->faker->randomElement( $airports ),
             'qualified_aircrafts' => $this->faker->randomElement( $aircrafts ),
             'email' => $this->faker->unique()->safeEmail(),
+            'status' => $this->faker->randomElement( $statuses ),
         ];
     }
 }

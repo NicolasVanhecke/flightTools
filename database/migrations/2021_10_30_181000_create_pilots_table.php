@@ -22,6 +22,7 @@ class CreatePilotsTable extends Migration
             $table->string('station');
             $table->string('qualified_aircrafts');
             $table->string('email');
+            $table->string('status')->default('active');
             $table->timestamps();
         });
     }
