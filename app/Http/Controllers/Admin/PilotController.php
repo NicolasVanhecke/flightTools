@@ -35,7 +35,7 @@ class PilotController extends Controller
         $pilot = new Pilot;
         $stations = [ 'BRU', 'OST', 'ANR', 'BCN', 'LPA', 'TFS' ];
         $aircrafts = [ 'B737', 'B737-MAX', 'B737-800', 'B777' ];
-        $statuses = [ 'in training', 'active', 'retired' ];
+        $statuses = [ 'training', 'active', 'retired' ];
 
         return view( 'admin.pilots.createOrUpdate', [
             'pilot' => $pilot,
@@ -93,7 +93,7 @@ class PilotController extends Controller
         $pilot = Pilot::findOrFail( $id );
         $stations = [ 'BRU', 'OST', 'ANR', 'BCN', 'LPA', 'TFS' ];
         $aircrafts = [ 'B737', 'B737-MAX', 'B737-800', 'B777' ];
-        $statuses = [ 'in training', 'active', 'retired' ];
+        $statuses = [ 'training', 'active', 'retired' ];
 
         return view( 'admin.pilots.createOrUpdate', [
             'pilot' => $pilot,
