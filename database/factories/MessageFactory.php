@@ -14,9 +14,12 @@ class MessageFactory extends Factory
     public function definition()
     {
         $airports = [ 'BRU', 'OST', 'ANR', 'BCN', 'LPA', 'TFS' ];
+        $short = $this->faker->paragraph( 1 );
+        $slug = str_replace(' ', '-', $short);
 
         return [
-            'short' => $this->faker->paragraph( 1 ),
+            'slug' => $slug,
+            'short' => $short,
             'body' => $this->faker->paragraph( 25 ),
             'start_date' => $this->faker->dateTimeThisMonth( $max = 'now' ),
             'end_date' => $this->faker->dateTimeThisMonth( $max = 'now' ),

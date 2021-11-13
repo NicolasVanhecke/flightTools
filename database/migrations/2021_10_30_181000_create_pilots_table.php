@@ -14,7 +14,7 @@ class CreatePilotsTable extends Migration
     public function up()
     {
         Schema::create('pilots', function (Blueprint $table) {
-            $table->id();
+            $table->id()->unique();
             $table->string('code')->unique();
             $table->string('first_name');
             $table->string('last_name');
