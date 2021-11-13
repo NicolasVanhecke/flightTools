@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FlightController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PilotController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
